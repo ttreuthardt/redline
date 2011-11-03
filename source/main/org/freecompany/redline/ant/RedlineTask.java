@@ -20,6 +20,7 @@ import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.ArchiveFileSet;
 import org.apache.tools.ant.types.TarFileSet;
 import org.apache.tools.ant.types.ZipFileSet;
+import org.freecompany.redline.payload.Contents;
 import org.freecompany.redline.payload.Directive;
 
 import static org.freecompany.redline.Util.normalizePath;
@@ -48,6 +49,7 @@ public class RedlineTask extends Task {
 	protected String sourcePackage = null;
 	protected String provides;
 	protected String prefixes;
+	protected String basedir;
 	protected RpmType type = BINARY;
 	protected Architecture architecture = NOARCH;
 	protected Os os = LINUX;
@@ -155,6 +157,7 @@ public class RedlineTask extends Task {
 	}
 
 	public void setName( String name) { this.name = name; }
+	public void setBasedir( String basedir) { Contents.addBuiltinDirectory(basedir); }
 	public void setType( String type) { this.type = RpmType.valueOf( type); }
 	public void setArchitecture( String architecture) { this.architecture = Architecture.valueOf( architecture); }
 	public void setOs( String os) { this.os = Os.valueOf( os); }
