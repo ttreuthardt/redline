@@ -311,12 +311,13 @@ public class Contents {
 
 	/**
 	 * Add additional directory that is assumed to already exist on system where the RPM will be installed
-	 * (e.g. /etc) and should not have an entry in the RPM.
+	 * (e.g. /etc) and should not have an entry in the RPM. Trailing slashes will be removed.
 	 *
 	 * @param directory
 	 */
-	public synchronized static void addBuiltinDirectory( final String directory) {
-		builtin.add(directory);
+	public synchronized static void addBuiltinDirectory( String directory) {
+		if(directory.endsWith("/")) directory = directory.substring(0, directory.length() - 1);
+        builtin.add(directory);
 	}
 
 	/**
